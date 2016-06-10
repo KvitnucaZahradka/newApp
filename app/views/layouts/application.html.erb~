@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%full_title(yield(:title))%></title>
+     <%= render :partial => 'layouts/header' %>
+     <!--<% flash.each do |message_type, message| %>-->
+       <!-- <%= content_tag(:div, message, class: "alert alert-success") %>-->
+      <!--<% end %>-->
+    <!-- <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track' => true %>-->
+    <%= render :partial => 'layouts/shim' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= render :partial => 'layouts/shim' %>
+  </head>
+  <body>
+     <div class="container">
+      <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-success") %>
+      <% end %>
+      <%= yield %>
+      <%= render :partial  => 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development?  %>   
+     </div>
+  </body>
+    <%= stylesheet_link_tag 'application', media: 'all',
+                                           'data-turbolinks-track' => true %>
+    <%= render :partial => 'layouts/shim' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</html>
+    

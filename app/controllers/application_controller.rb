@@ -5,4 +5,7 @@ class ApplicationController < ActionController::Base
 def hello
    render text: "hello world!"
 end
+
+add_flash_types :success, :warning, :danger, :info
+
 end

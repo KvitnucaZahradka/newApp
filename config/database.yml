@@ -21,7 +21,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: f4_developement
+  database: db/f4_developement
   pool: 5
   username: f4
   password:
@@ -29,7 +29,7 @@ development:
 test: &TEST
   adapter: postgresql
   encoding: unicode
-  database: f4_test
+  database: db/f4_test
   pool: 5
   username: f4
   password:
@@ -37,7 +37,7 @@ test: &TEST
 production:
   adapter: postgresql
   encoding: unicode
-  database: f4_production
+  database: db/f4_production
   pool: 5
   username: f4
   password: 
