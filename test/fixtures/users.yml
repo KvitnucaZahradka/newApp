@@ -1,2 +1,32 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 #empty for now
+
+martin:
+  name: hunka
+  email: hun@hun.com
+  password_digest: <%= User.digest('password')%>
+  admin: true
+
+
+lenjak:
+  name: lenjak
+  email: lenjak@lenjak.com
+  password_digest: <%= User.digest('password') %>
+
+
+lana:
+  name: Lana Kane
+  email: hands@example.gov
+  password_digest: <%= User.digest('password') %>
+
+malroy:
+  name: Malroy Archer
+  email: koss@example.gov
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name: <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
