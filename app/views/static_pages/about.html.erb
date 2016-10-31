@@ -1,10 +1,41 @@
 <% provide(:title, "About")%>
 <h1>About</h1>
-<p>
- The <a href="http://www.railstutorial.org/"><em>Ruby on Rails
- Tutorial</em></a> is a
- <a href="http://www.railstutorial.org/book">book</a> and
- <a href="http:screencasts.railstutorial.org/">screencast series</a>
+<div id="Introduction" name="Introduction" title="Introduction">
+  <h3>Introduction</h3>
+  <p>
+  The "lazy ions":
+  In this project I will address the question of who will be the next scientific trendsetter.
+  I will look at data from arXiv. The arXiv is free scientific pre-print server. The issue with the arXiv is similar to Wikipedia. There is really no independent reviewing process guaranteed. That is fine for preprints, however it is not so great for the people that actually use that server to get the most recent updates in a field of interest.
+  My proposition is to look at the work of the top-end scientist in a given field. The top scientists are identified as the most cited authors in given field for some period of earlier years. On arXiv one can freely download many papers from top scientists. I will call those top-scientists as the trendsetters.  By looking at the structure of such papers one can learn what makes a paper to be trendsetting. Using the learned structure one can predict the new trendsetting papers.
+  The whole project and required analysis has a potential to be transferable to another fields as well. Early detection of trendsetters and trendsetting articles can be interesting for companies like Flipboard, New York Times etc.
+  </p>
+  <p>
+  More technically I made preliminary exploratory analysis of batch of data obtained from arXiv. I focused on the field of
+  high-energy physics. The reason was that for that particular field it was particularly easy to get the list of trendsetters.
+  I used the list of most cited authors in the period of five years, provided at the webpage: <a href="https://www.slac.stanford.edu/spires/play/authors/2004/top_5_alpha.shtml">trendsetters</a>.
+  To find trendsetters I webscraped <a href="https://www.slac.stanford.edu/spires/play/authors/2004/top_5_alpha.shtml">that</a> webpage and obtained trendsetters
+  names and citation density (number of citations per article). I used obtained names to download sample articles (as pdf) and also another metadata (like abstract) directly from arXiv.
+  I used the arXiv api. I also downloaded data for non-trendsetters, as random sample of older articles from arXiv (meaning not the most recent papers). In the
+  Two pictures bellow are summarizing some surprising and curious features. For early look on I used particular measure of readability (Dale Chall readability measure) of an abstract of a paper and this
+  measure distribution for trendsetters and non-trendsetters. The difference is clearly visible. The non-trendsetters have higher mean of Dale Chall readability measure what means are harder readable
+  and also have much wider spread. The trendsetters however lower readability measure, what means that are easier to read and they have much more narrow spread.
 </p>
+  <p>
+  To conclude, even though the analysis made was very preliminary. It is surprising that even with this very rough estimates
+  of trendsetters vs non-trendsetters one can see significant differences. In this project I will push this analysis much
+  further.
+  </p>
+</div>
+<div id="NonTrendsetters" name="NonTrendsetters" title="NonTrendsetters">
+  <h3>Non-Trendsetters</h3>
+  <p>
+  <%= link_to image_tag("trendDaleChall_notTrending.png", alt: "trendDaleChall_notTrending figure") %>
+  </p>
+</div>
 
-
+<div id="Trendsetters" name="Trendsetters" title="Trendsetters">
+  <h3>Trendsetters</h3>
+  <p>
+   <%= link_to image_tag("trendDaleChall.png", alt: "trendDaleChall figure") %>
+  </p>
+</div>
