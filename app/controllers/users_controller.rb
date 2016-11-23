@@ -3,13 +3,15 @@ class UsersController < ApplicationController
  before_action :correct_user, only: [:edit, :update]
  before_action :admin_user, only: :destroy
 
-  def index
-    @users = User.paginate(page: params[:page])
-  end
+ # OLD version of index
+  #def index
+   # @users = User.paginate(page: params[:page])
+  #end
 
-  def show
-   @user = User.find(params[:id])
-  end
+ # OLD version of show
+  #def show
+   #@user = User.find(params[:id])
+  #end
 
  def new
   @user = User.new
@@ -18,9 +20,16 @@ class UsersController < ApplicationController
  def create
   @user = User.new(user_params)
   if @user.save
-    log_in @user
-    flash[:success] = "Welcome to the Sample App!"
-    redirect_to @user
+    @user.send_activation_email
+    #OLD version
+    #UserMailer.account_activation(@user).deliver_now
+    flash[:info] = "Please check your email to activate your account."
+    redirect_to root_url
+
+    ## Before emailing you had this:
+    #log_in @user
+    #flash[:success] = "Welcome to the Sample App!"
+    #redirect_to @user
   else
    render 'new'
   end
@@ -29,6 +38,16 @@ class UsersController < ApplicationController
  # How hartl had it:
  def edit
   @user = User.find(params[:id])
+ end
+
+# beware this is stuff I have coded: from exercise nr. 11.40
+ def index
+   @users = User.where(activated: true).paginate(page: params[:page])
+ end
+
+ def show
+   @user = User.find(params[:id])
+   redirect_to root_url and return unless @user.activated?
  end
 
 
