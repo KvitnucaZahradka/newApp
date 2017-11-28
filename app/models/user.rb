@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 #class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   #before_save { email.downcase! }
   before_save :downcase_email
   before_create :create_activation_digest
@@ -35,14 +35,26 @@ class User < ActiveRecord::Base
    BCrypt::Password.new(digest).is_password?(token)
   end
 
- # Forgets a user.
- def forget
-  update_attribute(:remember_digest, nil)
- end
+  # Forgets a user.
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
 
   # Sends activation email:
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+
+  # Send password reset email
+  def send_password_reset_email()
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  # Sets the password reste attributes.
+  def create_reset_password_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_send_at, Time.zone.now)
   end
 
   #Activates and account: I HAVE DONE THIS METHOD BEWARE
@@ -52,7 +64,7 @@ class User < ActiveRecord::Base
 
 
   # Private methds.
- private
+  private
   # Converts email to lower-case.
   def downcase_email
     self.email = email.downcase

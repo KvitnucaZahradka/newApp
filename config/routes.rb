@@ -1,5 +1,13 @@
 ###SampleApp::Application.routes.draw do
+###  get 'password_reset/new'
+
+###  get 'password_reset/edit'
+
 ####Rails.application.routes.draw do
+###  get 'password_reset/new'
+
+###  get 'password_reset/edit'
+
 ###  resources :users do
 ###    member do
 ###      get :following, :followers
@@ -21,23 +29,28 @@
 
 
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'users/new'
 
- get 'sessions/new'
- get 'users/new'
+  root to: 'static_pages#home'
+  get '/help', to: 'static_pages#help'
+  get '/about', to: 'static_pages#about'
+  get '/contact', to: 'static_pages#contact'
+  get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
 
- root to: 'static_pages#home'
- get '/help', to: 'static_pages#help'
- get '/about', to: 'static_pages#about'
- get '/contact', to: 'static_pages#contact'
- get '/signup', to: 'users#new'
- get '/login', to: 'sessions#new'
- post '/login', to: 'sessions#create'
+  get '/password_resets/new', to: 'password_reset#new', as: 'reset_password'
+  post '/password_resets', to: 'password_reset#create', as: ''
+#  get 'password_reset/edit'
+
+  post '/login', to: 'sessions#create'
  # get '/edit', to: 'sessions#edit'
  # post '/edit', to: 'sessions#edit'
- delete '/logout', to: 'sessions#destroy'
 
- resources :users
- resources :account_activations, only: [:edit]
+  delete '/logout', to: 'sessions#destroy'
+  resources :users
+  resources :account_activations, only: [:edit]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
  # root 'static_pages#home'
 

@@ -2,19 +2,28 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Rails first: development" uuid="979fdb4c-0e0e-4058-94c5-9819cc58a0ad">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <first-sync>true</first-sync>
+      <database-info product="PostgreSQL" version="9.5.0" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <user-name>f4</user-name>
+      <resolve-scope>db/f4_developement:f4,public</resolve-scope>
     </data-source>
     <data-source name="Rails first: test" uuid="824fc992-fc1f-40bb-9dff-21e3ae5d97a2">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <first-sync>true</first-sync>
+      <database-info product="PostgreSQL" version="9.5.0" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <user-name>f4</user-name>
+      <resolve-scope>db/f4_test:f4,public</resolve-scope>
     </data-source>
     <data-source name="Rails first: production" uuid="8a624d46-eca5-4112-9460-c2d27b9e808e">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <first-sync>true</first-sync>
+      <database-info product="PostgreSQL" version="9.5.0" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <user-name>f4</user-name>
+      <resolve-scope>db/f4_production:public,f4</resolve-scope>
     </data-source>
   </component>
 </project>
